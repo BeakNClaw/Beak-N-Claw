@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beak N Claw — Exotic Pets & Plants, Bangladesh</title>
+  <meta name="description" content="Bangladesh's premier exotic pet farm and plant shop. Birds, isopods, sugar gliders, rodents, exotic hens, roaches, cactus, succulents, indoor & terrarium plants." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ────────────────────────────────────────────── */
+    :root {
+      --ink:       #0C1E12;
+      --forest:    #1A4A2A;
+      --mid:       #2E7D4F;
+      --leaf:      #5BB87A;
+      --amber:     #D9943A;
+      --amber-lt:  #F2C97A;
+      --bone:      #F6F3EB;
+      --cream:     #FAFAF5;
+      --mist:      #EDF4EF;
+      --gray:      #6B7280;
+      --lgray:     #E4E7E1;
+      --white:     #FFFFFF;
+      --rad:       14px;
+      --rad-lg:    22px;
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
+    button { font-family: var(--sans); cursor: pointer; border: none; }
+    ul { list-style: none; }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 900;
+      background: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+      box-shadow: 0 2px 24px rgba(0,0,0,.35);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.45rem; font-weight: 900;
+      color: var(--amber); letter-spacing: .5px; white-space: nowrap;
+    }
+    .nav-logo span { color: var(--leaf); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      color: rgba(255,255,255,.72); font-size: .9rem;
+      font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-wa {
+      background: #25D366; color: var(--white);
+      padding: 9px 22px; border-radius: 50px;
+      font-size: .875rem; font-weight: 600;
+      transition: all .2s; white-space: nowrap;
+    }
+    .nav-wa:hover { background: #1EBE5A; transform: translateY(-1px); }
+    .ham { display: none; background: none; color: white; font-size: 1.5rem; padding: 4px; }
+
+    /* ─── MOBILE MENU ───────────────────────────────────────── */
+    #mob-menu {
+      display: none; flex-direction: column; gap: 0;
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--ink); z-index: 899;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    #mob-menu a {
+      color: rgba(255,255,255,.78); font-size: 1rem;
+      padding: 16px 28px; border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: background .2s;
+    }
+    #mob-menu a:hover { background: rgba(255,255,255,.05); }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      background: var(--ink);
+      min-height: 92vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 0;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .hero-bg-circle.a {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,79,.22) 0%, transparent 70%);
+      right: -80px; top: -120px;
+    }
+    .hero-bg-circle.b {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(91,184,122,.08) 0%, transparent 70%);
+      left: 30%; bottom: -80px;
+    }
+
+    .hero-left {
+      padding: 80px 56px 80px 64px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(91,184,122,.15); color: var(--leaf);
+      padding: 6px 16px; border-radius: 50px;
+      font-size: .8rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 28px;
+      border: 1px solid rgba(91,184,122,.25);
+    }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 900; line-height: 1.1; color: white;
+      margin-bottom: 22px;
+    }
+    .hero h1 em { color: var(--amber); font-style: normal; }
+    .hero-sub {
+      color: rgba(255,255,255,.55); font-size: 1.05rem;
+      line-height: 1.72; max-width: 440px; margin-bottom: 38px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-amber {
+      background: var(--amber); color: white;
+      padding: 14px 32px; border-radius: 50px;
+      font-weight: 700; font-size: .95rem;
+      box-shadow: 0 4px 20px rgba(217,148,58,.35);
+      transition: all .22s; display: inline-block;
+    }
+    .btn-amber:hover { background: #C4832A; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(217,148,58,.45); }
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,.28); color: rgba(255,255,255,.8);
+      padding: 13px 28px; border-radius: 50px;
+      font-weight: 500; font-size: .95rem;
+      transition: all .22s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--leaf); color: var(--leaf); }
+
+    .hero-right {
+      padding: 60px 40px 60px 20px;
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--rad-lg); padding: 24px 20px;
+      text-align: center; transition: all .3s;
+    }
+    .hero-card:hover {
+      background: rgba(46,125,79,.25);
+      border-color: rgba(91,184,122,.4);
+      transform: translateY(-4px);
+    }
+    .hero-card-icon { font-size: 2.6rem; margin-bottom: 12px; }
+    .hero-card-name {
+      font-family: var(--serif); font-size: 1rem;
+      color: white; font-weight: 700; margin-bottom: 6px;
+    }
+    .hero-card-sub { font-size: .8rem; color: rgba(255,255,255,.42); }
+    .hero-card.featured {
+      grid-column: span 2;
+      display: flex; align-items: center; gap: 20px;
+      text-align: left; padding: 22px 26px;
+      background: rgba(217,148,58,.12); border-color: rgba(217,148,58,.3);
+    }
+    .hero-card.featured .hero-card-name { font-size: 1.1rem; }
+    .hero-card.featured .hero-card-sub { font-size: .85rem; }
+    .featured-tag {
+      display: inline-block;
+      background: var(--amber); color: white;
+      padding: 3px 10px; border-radius: 50px;
+      font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+
+    /* ─── STATS BAR ─────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--forest);
+      display: flex; justify-content: center; gap: 80px;
+      padding: 28px 48px; flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--serif); font-size: 2rem;
+      font-weight: 900; color: var(--amber-lt); line-height: 1;
+    }
+    .stat-lbl { font-size: .8rem; color: rgba(255,255,255,.5); margin-top: 5px; }
+
+    /* ─── SECTION COMMONS ───────────────────────────────────── */
+    section { padding: 80px 64px; }
+    .sec-eye {
+      display: inline-block; font-size: .75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: var(--serif); font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+      font-weight: 900; line-height: 1.15; color: var(--ink); margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 1rem; color: var(--gray); line-height: 1.68;
+      max-width: 520px; margin-bottom: 48px;
+    }
+
+    /* ─── FILTER TABS ───────────────────────────────────────── */
+    .shop-section { background: var(--cream); padding: 72px 64px; }
+    .shop-head { margin-bottom: 36px; }
+    .filter-tabs {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px;
+    }
+    .ftab {
+      padding: 9px 20px; border-radius: 50px;
+      border: 1.5px solid var(--lgray); background: white;
+      color: var(--gray); font-size: .87rem; font-weight: 500;
+      transition: all .2s; cursor: pointer;
+    }
+    .ftab:hover { border-color: var(--mid); color: var(--mid); }
+    .ftab.on { background: var(--forest); color: white; border-color: var(--forest); }
+
+    /* ─── PRODUCT GRID ──────────────────────────────────────── */
+    .pgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 22px;
+    }
+    .pcard {
+      background: white; border-radius: var(--rad-lg);
+      overflow: hidden; transition: all .28s;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .pcard:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(0,0,0,.13); }
+    .pcard-thumb {
+      width: 100%; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative;
+    }
+    .pcard-body { padding: 18px 20px 20px; }
+    .pcard-tag {
+      display: inline-block; font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .8px;
+      padding: 3px 10px; border-radius: 50px; margin-bottom: 8px;
+    }
+    .pcard-name {
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .pcard-desc { font-size: .85rem; color: var(--gray); line-height: 1.52; margin-bottom: 16px; }
+    .pcard-foot { display: flex; align-items: center; justify-content: space-between; }
+    .pcard-price { font-size: 1.05rem; font-weight: 700; color: var(--forest); }
+    .pcard-btn {
+      background: var(--forest); color: white;
+      padding: 8px 16px; border-radius: 50px;
+      font-size: .82rem; font-weight: 600; transition: all .2s;
+    }
+    .pcard-btn:hover { background: var(--amber); }
+
+    /* category color pairs: [bg, tag-bg, tag-color] */
+    /* applied inline via JS */
+
+    /* ─── PLANTS SECTION ────────────────────────────────────── */
+    .plants-section { background: var(--mist); padding: 80px 64px; }
+    .plant-subcats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 18px; margin-bottom: 54px;
+    }
+    .psc {
+      background: white; border-radius: var(--rad-lg); padding: 28px 22px;
+      text-align: center; border: 2px solid transparent;
+      cursor: pointer; transition: all .28s;
+    }
+    .psc:hover, .psc.on {
+      border-color: var(--mid); box-shadow: 0 8px 28px rgba(30,92,58,.14);
+      transform: translateY(-4px);
+    }
+    .psc.on { background: var(--forest); }
+    .psc.on .psc-name { color: white; }
+    .psc.on .psc-desc { color: rgba(255,255,255,.55); }
+    .psc-icon { font-size: 2.8rem; margin-bottom: 12px; }
+    .psc-name {
+      font-family: var(--serif); font-size: 1.05rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .psc-desc { font-size: .82rem; color: var(--gray); line-height: 1.5; }
+    .plant-grid-wrap { display: none; }
+    .plant-grid-wrap.show { display: block; }
+    .plant-grid-wrap .pgrid { margin-top: 0; }
+
+    /* ─── PETS SPOTLIGHT ────────────────────────────────────── */
+    .pets-section { background: var(--cream); }
+
+    /* ─── WHY US ────────────────────────────────────────────── */
+    .why-section { background: var(--ink); }
+    .why-section .sec-eye { color: var(--leaf); }
+    .why-section .sec-title { color: white; }
+    .why-section .sec-sub { color: rgba(255,255,255,.45); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 22px;
+    }
+    .why-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--rad-lg); padding: 30px 24px; transition: all .28s;
+    }
+    .why-card:hover {
+      background: rgba(46,125,79,.25); border-color: rgba(91,184,122,.4);
+    }
+    .why-icon { font-size: 2rem; margin-bottom: 16px; }
+    .why-title {
+      font-family: var(--serif); font-size: 1rem; font-weight: 700;
+      color: var(--amber-lt); margin-bottom: 10px;
+    }
+    .why-text { font-size: .875rem; color: rgba(255,255,255,.48); line-height: 1.6; }
+
+    /* ─── CONTACT ───────────────────────────────────────────── */
+    .contact-section { background: var(--bone); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .contact-info .sec-title { color: var(--ink); }
+    .contact-info p { color: var(--gray); line-height: 1.7; margin-bottom: 32px; }
+    .cinfo-list { display: flex; flex-direction: column; gap: 18px; }
+    .cinfo-row { display: flex; align-items: center; gap: 14px; }
+    .cinfo-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--forest); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0;
+    }
+    .cinfo-main { font-size: .95rem; font-weight: 600; color: var(--ink); }
+    .cinfo-sub { font-size: .82rem; color: var(--gray); margin-top: 2px; }
+
+    .cform {
+      background: white; border-radius: var(--rad-lg);
+      padding: 38px; box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    .cform h3 {
+      font-family: var(--serif); font-size: 1.4rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 26px;
+    }
+    .fg { margin-bottom: 18px; }
+    .fg label { display: block; font-size: .83rem; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; padding: 11px 15px;
+      border: 1.5px solid var(--lgray); border-radius: 10px;
+      font-size: .92rem; font-family: var(--sans); color: var(--ink);
+      background: var(--bone); transition: border-color .2s; outline: none;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--mid); }
+    .fg textarea { resize: vertical; min-height: 96px; }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cform-btn {
+      width: 100%; padding: 14px; background: var(--forest); color: white;
+      border-radius: 50px; font-size: .95rem; font-weight: 700;
+      transition: all .22s;
+    }
+    .cform-btn:hover { background: var(--mid); }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: #060E0A; color: rgba(255,255,255,.4);
+      padding: 60px 64px 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-family: var(--serif); font-size: 1.45rem; font-weight: 900;
+      color: var(--amber); margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--leaf); }
+    .footer-brand p { font-size: .87rem; line-height: 1.65; max-width: 260px; }
+    .footer-col h4 { color: white; font-size: .87rem; font-weight: 600; margin-bottom: 18px; }
+    .footer-col li + li { margin-top: 10px; }
+    .footer-col a { color: rgba(255,255,255,.38); font-size: .85rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--amber-lt); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 26px; text-align: center; font-size: .8rem;
+    }
+
+    /* ─── WHATSAPP FLOAT ────────────────────────────────────── */
+    .wa-btn {
+      position: fixed; bottom: 28px; right: 28px; z-index: 950;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; box-shadow: 0 4px 22px rgba(37,211,102,.45);
+      transition: all .25s;
+    }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
+
+    /* ─── TOAST ─────────────────────────────────────────────── */
+    #toast {
+      position: fixed; bottom: 104px; right: 28px; z-index: 960;
+      background: var(--ink); color: white;
+      padding: 12px 20px; border-radius: 10px; font-size: .88rem;
+      border-left: 4px solid var(--leaf);
+      opacity: 0; transform: translateY(10px); pointer-events: none;
+      transition: all .3s; max-width: 280px;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      section, .shop-section, .plants-section, footer { padding-left: 36px; padding-right: 36px; }
+      nav { padding: 0 28px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 80px 36px 100px; }
+      .plant-subcats { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .contact-grid { gap: 40px; }
+      .stats-bar { gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links, .nav-wa { display: none; }
+      .ham { display: block; }
+      section, .shop-section, .plants-section { padding: 56px 20px; }
+      footer { padding: 48px 20px 28px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .fg-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .plant-subcats { grid-template-columns: 1fr 1fr; }
+      .stats-bar { gap: 24px; padding: 24px 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .plant-subcats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="nav-logo">🦜 Beak <span>N</span> Claw</div>
+  <ul class="nav-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#plants">Plants</a></li>
+    <li><a href="#pets">Pets</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-wa">💬 WhatsApp Us</a>
+  <button class="ham" onclick="toggleMenu()">☰</button>
+</nav>
+<div id="mob-menu">
+  <a href="#shop"    onclick="closeMenu()">🛒 Shop All</a>
+  <a href="#plants"  onclick="closeMenu()">🌿 Plants</a>
+  <a href="#pets"    onclick="closeMenu()">🦎 Pets</a>
+  <a href="#why"     onclick="closeMenu()">⭐ About</a>
+  <a href="#contact" onclick="closeMenu()">📬 Contact</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg-circle a"></div>
+  <div class="hero-bg-circle b"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">🌿 Bangladesh's Exotic Pet & Plant Farm</div>
+    <h1>Where <em>Wild Beauty</em> Comes Home</h1>
+    <p class="hero-sub">
+      From rare isopods and sugar gliders to lush terrariums and indoor jungles —
+      Beak N Claw sources nature's most extraordinary companions for passionate keepers.
+    </p>
+    <div class="hero-btns">
+      <a href="#shop" class="btn-amber">Browse Collection</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card featured">
+      <span style="font-size:3.5rem">🦔</span>
+      <div>
+        <span class="featured-tag">⭐ Featured</span>
+        <div class="hero-card-name">Sugar Glider</div>
+        <div class="hero-card-sub">Bonding marsupials that glide & cuddle. Captive-bred, hand-tame.</div>
+      </div>
+    </div>
+    <div class="hero-card"><div class="hero-card-icon">🪲</div><div class="hero-card-name">Isopods</div><div class="hero-card-sub">Dairy Cow, Rubber Ducky & more</div></div>
+    <div class="hero-card"><div class="hero-card-icon">🌵</div><div class="hero-card-name">Cactus & Succulents</div><div class="hero-card-sub">30+ varieties in stock</div></div>
+    <div class="hero-card"><div class="hero-card-icon">🦜</div><div class="hero-card-name">Exotic Birds</div><div class="hero-card-sub">Conures, Cockatiels, Alexandrines</div></div>
+    <div class="hero-card"><div class="hero-card-icon">🫙</div><div class="hero-card-name">Terrarium Plants</div><div class="hero-card-sub">Ferns, moss & vivarium creepers</div></div>
+  </div>
+</section>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">50+</div><div class="stat-lbl">Species Available</div></div>
+  <div class="stat-item"><div class="stat-num">30+</div><div class="stat-lbl">Plant Varieties</div></div>
+  <div class="stat-item"><div class="stat-num">300+</div><div class="stat-lbl">Happy Owners</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Health Guaranteed</div></div>
+</div>
+
+<!-- ══════════ SHOP ALL ══════════ -->
+<div class="shop-section" id="shop">
+  <div class="shop-head">
+    <span class="sec-eye">🛒 Our Collection</span>
+    <h2 class="sec-title">Browse Everything</h2>
+    <p class="sec-sub">Filter by category to find exactly what you're looking for.</p>
+  </div>
+  <div class="filter-tabs" id="filter-tabs">
+    <button class="ftab on"  data-f="all">All</button>
+    <button class="ftab"     data-f="bird">🦜 Birds</button>
+    <button class="ftab"     data-f="rodent">🐭 Rodents</button>
+    <button class="ftab"     data-f="isopod">🪲 Isopods</button>
+    <button class="ftab"     data-f="roach">🪳 Roaches</button>
+    <button class="ftab"     data-f="glider">🦔 Gliders</button>
+    <button class="ftab"     data-f="hen">🐔 Exotic Hens</button>
+    <button class="ftab"     data-f="plant">🌿 Plants</button>
+    <button class="ftab"     data-f="product">📦 Products</button>
+  </div>
+  <div class="pgrid" id="main-grid"></div>
+</div>
+
+<!-- ══════════ PLANTS ══════════ -->
+<section class="plants-section" id="plants">
+  <span class="sec-eye">🌱 Living Green</span>
+  <h2 class="sec-title">Plants for Every Space</h2>
+  <p class="sec-sub">Curated for terrariums, windowsills, and living rooms — grown with care, delivered healthy and thriving.</p>
+
+  <div class="plant-subcats">
+    <div class="psc" data-sub="cactus" onclick="togglePlantSub(this,'cactus')">
+      <div class="psc-icon">🌵</div>
+      <div class="psc-name">Cactus</div>
+      <div class="psc-desc">Drought-hardy, sun-loving beauties. Low maintenance, high personality.</div>
+    </div>
+    <div class="psc" data-sub="succulent" onclick="togglePlantSub(this,'succulent')">
+      <div class="psc-icon">🪴</div>
+      <div class="psc-name">Succulents</div>
+      <div class="psc-desc">Rosette-shaped, colorful, and almost impossible to kill. Perfect for beginners.</div>
+    </div>
+    <div class="psc" data-sub="indoor" onclick="togglePlantSub(this,'indoor')">
+      <div class="psc-icon">🌿</div>
+      <div class="psc-name">Indoor Plants</div>
+      <div class="psc-desc">Air-purifying tropicals that thrive in home and office environments.</div>
+    </div>
+    <div class="psc" data-sub="terrarium" onclick="togglePlantSub(this,'terrarium')">
+      <div class="psc-icon">🫙</div>
+      <div class="psc-name">Terrarium Plants</div>
+      <div class="psc-desc">Mosses, ferns & creepers perfect for vivarium and bioactive builds.</div>
+    </div>
+  </div>
+
+  <!-- Plant subgrids (shown/hidden on tab click) -->
+  <div class="plant-grid-wrap" id="pgw-cactus">
+    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:22px;">🌵 Cactus Collection</h3>
+    <div class="pgrid" id="pgrid-cactus"></div>
+  </div>
+  <div class="plant-grid-wrap" id="pgw-succulent">
+    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:22px;">🪴 Succulents</h3>
+    <div class="pgrid" id="pgrid-succulent"></div>
+  </div>
+  <div class="plant-grid-wrap" id="pgw-indoor">
+    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:22px;">🌿 Indoor Plants</h3>
+    <div class="pgrid" id="pgrid-indoor"></div>
+  </div>
+  <div class="plant-grid-wrap" id="pgw-terrarium">
+    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:22px;">🫙 Terrarium Plants</h3>
+    <div class="pgrid" id="pgrid-terrarium"></div>
+  </div>
+</section>
+
+<!-- ══════════ PETS ══════════ -->
+<section class="pets-section" id="pets">
+  <span class="sec-eye">🦎 Exotic Companions</span>
+  <h2 class="sec-title">Meet Our Pets</h2>
+  <p class="sec-sub">Healthy, ethically sourced, and ready for their forever homes. Every animal comes with a full care guide.</p>
+  <div class="pgrid" id="pets-grid"></div>
+</section>
+
+<!-- ══════════ WHY US ══════════ -->
+<section class="why-section" id="why">
+  <span class="sec-eye">⭐ Why Choose Us</span>
+  <h2 class="sec-title">More Than Just a Pet Shop</h2>
+  <p class="sec-sub">We're a community of animal lovers and plant enthusiasts committed to responsible ownership.</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🏥</div><div class="why-title">Health Guaranteed</div><div class="why-text">Every animal is vet-checked and comes with a health record. We never cut corners on care.</div></div>
+    <div class="why-card"><div class="why-icon">📚</div><div class="why-title">Free Care Guides</div><div class="why-text">Every purchase includes a detailed care sheet so your companion thrives from day one.</div></div>
+    <div class="why-card"><div class="why-icon">🚚</div><div class="why-title">Safe Delivery</div><div class="why-text">Live animal and plant shipping in insulated breathable packaging. Hundreds shipped safely.</div></div>
+    <div class="why-card"><div class="why-icon">💬</div><div class="why-title">Lifetime Support</div><div class="why-text">Questions after your purchase? We're on WhatsApp for ongoing help, always.</div></div>
+    <div class="why-card"><div class="why-icon">🌱</div><div class="why-title">Ethically Sourced</div><div class="why-text">All our pets are captive-bred. We never deal in wild-caught animals.</div></div>
+    <div class="why-card"><div class="why-icon">🏅</div><div class="why-title">Trusted by 300+</div><div class="why-text">Hundreds of happy owners across Bangladesh recommend us by name.</div></div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <span class="sec-eye">📬 Get in Touch</span>
+      <h2 class="sec-title">Ready to Start Your Journey?</h2>
+      <p>Whether you're a first-time owner or an experienced keeper, we'll help you find the perfect companion or plant.</p>
+      <div class="cinfo-list">
+        <div class="cinfo-row">
+          <div class="cinfo-icon">📱</div>
+          <div><div class="cinfo-main">WhatsApp</div><div class="cinfo-sub">+880 1XXXXXXXXX (update this)</div></div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon">📧</div>
+          <div><div class="cinfo-main">Email</div><div class="cinfo-sub">beaknclaw@gmail.com</div></div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon">📍</div>
+          <div><div class="cinfo-main">Location</div><div class="cinfo-sub">Dhaka, Bangladesh</div></div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon">🕐</div>
+          <div><div class="cinfo-main">Hours</div><div class="cinfo-sub">Sat–Thu: 10 AM – 8 PM</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cform">
+      <h3>Send an Enquiry</h3>
+      <div class="fg-row">
+        <div class="fg"><label>Your Name</label><input id="f-name" type="text" placeholder="Your full name" /></div>
+        <div class="fg"><label>Phone / WhatsApp</label><input id="f-phone" type="tel" placeholder="+880 1XXXXXXXXX" /></div>
+      </div>
+      <div class="fg">
+        <label>Interested In</label>
+        <select id="f-interest">
+          <option value="">Select a category…</option>
+          <option>Birds</option>
+          <option>Rodents</option>
+          <option>Isopods</option>
+          <option>Roaches (Feeder / Pet)</option>
+          <option>Sugar Gliders</option>
+          <option>Exotic Hens</option>
+          <option>Cactus</option>
+          <option>Succulents</option>
+          <option>Indoor Plants</option>
+          <option>Terrarium Plants</option>
+          <option>Pet Products</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea id="f-msg" placeholder="Tell us what you're looking for, any specific species or varieties…"></textarea>
+      </div>
+      <button class="cform-btn" onclick="sendEnquiry()">Send via WhatsApp 💬</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🦜 Beak <span>N</span> Claw</div>
+      <p>Bangladesh's most trusted exotic pet farm and plant shop. Bringing rare species and living green to passionate hobbyists since 2022.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pets</h4>
+      <ul>
+        <li><a href="#shop">Birds</a></li>
+        <li><a href="#shop">Rodents</a></li>
+        <li><a href="#shop">Isopods</a></li>
+        <li><a href="#shop">Sugar Gliders</a></li>
+        <li><a href="#shop">Exotic Hens</a></li>
+        <li><a href="#shop">Roaches</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Plants</h4>
+      <ul>
+        <li><a href="#plants">Cactus</a></li>
+        <li><a href="#plants">Succulents</a></li>
+        <li><a href="#plants">Indoor Plants</a></li>
+        <li><a href="#plants">Terrarium Plants</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Shop All</a></li>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Beak N Claw. All rights reserved. Made with 🌿 in Bangladesh.</p>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a class="wa-btn" href="https://wa.me/880XXXXXXXXXX" target="_blank" title="Chat on WhatsApp">💬</a>
+<div id="toast"></div>
+
+<!-- ══════════ SCRIPT ══════════ -->
+<script>
+// ── DATA ─────────────────────────────────────────────────────
+const CAT_META = {
+  bird:    { bg:'#E8F5E9', tagBg:'#C8E6C9', tagColor:'#1B5E20', label:'🦜 Bird' },
+  rodent:  { bg:'#FFF8E1', tagBg:'#FFE082', tagColor:'#5D4037', label:'🐭 Rodent' },
+  isopod:  { bg:'#EDE7F6', tagBg:'#D1C4E9', tagColor:'#4527A0', label:'🪲 Isopod' },
+  roach:   { bg:'#EFEBE9', tagBg:'#D7CCC8', tagColor:'#4E342E', label:'🪳 Roach' },
+  glider:  { bg:'#FCE4EC', tagBg:'#F8BBD9', tagColor:'#880E4F', label:'🦔 Glider' },
+  hen:     { bg:'#FFF3E0', tagBg:'#FFCC80', tagColor:'#E65100', label:'🐔 Exotic Hen' },
+  plant:   { bg:'#E8F5E9', tagBg:'#A5D6A7', tagColor:'#1B5E20', label:'🌿 Plant' },
+  product: { bg:'#E3F2FD', tagBg:'#90CAF9', tagColor:'#0D47A1', label:'📦 Product' },
+};
+
+const products = [
+  // ── BIRDS ──
+  { id:1,  cat:'bird',    sub:null,       emoji:'🦜', name:'Sun Conure',          desc:'Vibrant, playful & affectionate. Among the most popular companion parrots.',           price:'৳ 12,000' },
+  { id:2,  cat:'bird',    sub:null,       emoji:'🐦', name:'Cockatiel',           desc:'Gentle, whistling companions. Great for first-time bird owners of all ages.',           price:'৳ 3,500'  },
+  { id:3,  cat:'bird',    sub:null,       emoji:'💚', name:'Lovebird Pair',       desc:'A bonded pair of vibrant lovebirds. Best kept together for maximum happiness.',          price:'৳ 2,500'  },
+  { id:4,  cat:'bird',    sub:null,       emoji:'🦚', name:'Alexandrine Parrot',  desc:'Large, intelligent parrots with impressive talking ability and striking plumage.',       price:'৳ 18,000' },
+  // ── RODENTS ──
+  { id:5,  cat:'rodent',  sub:null,       emoji:'🐭', name:'Fancy Mouse',         desc:'Curious and quick. Fun to watch, easy to tame, and very beginner-friendly.',            price:'৳ 200'    },
+  { id:6,  cat:'rodent',  sub:null,       emoji:'🐹', name:'Roborovski Hamster',  desc:'The world\'s tiniest hamster. Incredibly fast and endlessly entertaining to watch.',    price:'৳ 600'    },
+  { id:7,  cat:'rodent',  sub:null,       emoji:'🐀', name:'Degu',                desc:'Social, diurnal rodents that thrive on interaction and love to play with toys.',         price:'৳ 1,500'  },
+  // ── ISOPODS ──
+  { id:8,  cat:'isopod',  sub:null,       emoji:'🐄', name:'Dairy Cow Isopod',   desc:'Striking black & white patterned isopods. A top pick for bioactive keepers.',           price:'৳ 1,200 /10pc' },
+  { id:9,  cat:'isopod',  sub:null,       emoji:'🦆', name:'Rubber Ducky Isopod',desc:'Extremely rare vivid yellow morphs. A true collector\'s dream and conversation piece.', price:'৳ 3,500 /5pc'  },
+  { id:10, cat:'isopod',  sub:null,       emoji:'🪲', name:'Porcellio Scaber',   desc:'Hardy cleanup crew in multiple morphs. Great for terrariums and bioactive setups.',      price:'৳ 400 /15pc'  },
+  { id:11, cat:'isopod',  sub:null,       emoji:'⚫', name:'Armadillidium Vulgare',desc:'Classic pill bug / roly-poly. Rolls into a ball when threatened. Easy to breed.',      price:'৳ 350 /15pc'  },
+  // ── ROACHES ──
+  { id:12, cat:'roach',   sub:null,       emoji:'🪳', name:'Dubia Roach',        desc:'The best feeder insect for reptiles. Nutritious, odourless, and easy to breed.',         price:'৳ 300 /20pc'  },
+  { id:13, cat:'roach',   sub:null,       emoji:'😤', name:'Hissing Cockroach',  desc:'Madagascar giants that hiss when disturbed. Fascinating pets and great starter bugs.',   price:'৳ 800 /pair'  },
+  // ── GLIDERS ──
+  { id:14, cat:'glider',  sub:null,       emoji:'🦔', name:'Sugar Glider',       desc:'Bonding marsupials that glide and love to cuddle. Captive-bred, hand-tame pairs.',      price:'৳ 15,000' },
+  { id:15, cat:'glider',  sub:null,       emoji:'🫶', name:'Sugar Glider Pair',  desc:'A pre-bonded pair — gliders are happiest with a companion and bond closely with owners.',price:'৳ 25,000' },
+  // ── EXOTIC HENS ──
+  { id:16, cat:'hen',     sub:null,       emoji:'🐔', name:'Silkie Chicken',     desc:'Fluffy, gentle birds with fur-like feathers and a calm temperament. Excellent family pets.',price:'৳ 2,500' },
+  { id:17, cat:'hen',     sub:null,       emoji:'👑', name:'Polish Crested Hen', desc:'Known for the fabulous crest on their head. Ornamental show birds with great flair.',     price:'৳ 3,000' },
+  { id:18, cat:'hen',     sub:null,       emoji:'🖤', name:'Ayam Cemani',        desc:'The all-black chicken — feathers, beak, skin, and bones. One of the rarest breeds.',    price:'৳ 8,000' },
+  { id:19, cat:'hen',     sub:null,       emoji:'🐣', name:'Serama Bantam',      desc:'The world\'s smallest chicken breed. Incredibly charming and easy to keep indoors.',    price:'৳ 1,800' },
+  // ── PLANTS — CACTUS ──
+  { id:20, cat:'plant',   sub:'cactus',   emoji:'🌵', name:'Golden Barrel Cactus',  desc:'Classic globe-shaped cactus with golden spines. Ideal for sunny windowsills.',         price:'৳ 350' },
+  { id:21, cat:'plant',   sub:'cactus',   emoji:'🔴', name:'Moon Cactus',           desc:'Vibrant grafted cactus in neon red, orange, or yellow. A colourful desk centrepiece.',price:'৳ 280' },
+  { id:22, cat:'plant',   sub:'cactus',   emoji:'🐰', name:'Bunny Ear Cactus',      desc:'Flat pads shaped like bunny ears. Minimal water needs, maximum charm.',                price:'৳ 300' },
+  { id:23, cat:'plant',   sub:'cactus',   emoji:'🌸', name:'Christmas Cactus',      desc:'Blooms in stunning pink or red during winter. A holiday favourite for good reason.',   price:'৳ 380' },
+  // ── PLANTS — SUCCULENTS ──
+  { id:24, cat:'plant',   sub:'succulent',emoji:'💜', name:'Echeveria Rosette',     desc:'Rose-shaped succulent in dusty blue-green. Compact, beautiful, and low-maintenance.',  price:'৳ 200' },
+  { id:25, cat:'plant',   sub:'succulent',emoji:'🌿', name:'Haworthia',             desc:'Compact and low-light tolerant with translucent leaf tips. Perfect for desks.',        price:'৳ 250' },
+  { id:26, cat:'plant',   sub:'succulent',emoji:'🌱', name:'Aloe Vera',             desc:'The ultimate multi-purpose plant. Soothing gel, air-purifying, nearly indestructible.',price:'৳ 150' },
+  { id:27, cat:'plant',   sub:'succulent',emoji:'🟣', name:'String of Pearls',      desc:'Trailing cascades of bead-like leaves. Stunning in hanging pots and high shelves.',    price:'৳ 320' },
+  // ── PLANTS — INDOOR ──
+  { id:28, cat:'plant',   sub:'indoor',   emoji:'🌴', name:'Monstera Deliciosa',    desc:'The iconic split-leaf plant. Makes any room feel like a tropical jungle instantly.',    price:'৳ 600' },
+  { id:29, cat:'plant',   sub:'indoor',   emoji:'🍃', name:'Golden Pothos',         desc:'Near-unkillable trailing plant. Perfect for shelves, hanging baskets, and beginners.',  price:'৳ 180' },
+  { id:30, cat:'plant',   sub:'indoor',   emoji:'💚', name:'ZZ Plant',              desc:'Glossy dark leaves that thrive on neglect. Near-zero maintenance, zero fuss.',          price:'৳ 400' },
+  { id:31, cat:'plant',   sub:'indoor',   emoji:'🤍', name:'Peace Lily',            desc:'Elegant white blooms that filter air toxins. Loves shade, hates overwatering.',        price:'৳ 350' },
+  { id:32, cat:'plant',   sub:'indoor',   emoji:'🌳', name:'Fiddle Leaf Fig',       desc:'Dramatic large leaves for a bold statement in any living room or office.',             price:'৳ 950' },
+  // ── PLANTS — TERRARIUM ──
+  { id:33, cat:'plant',   sub:'terrarium',emoji:'🫧', name:'Fittonia (Nerve Plant)',desc:'Intricate veined leaves in green, pink, or white. The definitive terrarium staple.',   price:'৳ 200' },
+  { id:34, cat:'plant',   sub:'terrarium',emoji:'🌊', name:'Java Moss',             desc:'Lush carpeting moss ideal for vivarium floors and background walls.',                   price:'৳ 150 /portion' },
+  { id:35, cat:'plant',   sub:'terrarium',emoji:'🌿', name:'Mini Fern (Assorted)', desc:'Delicate fronds perfect for humid closed terrariums and bioactive enclosures.',        price:'৳ 220' },
+  { id:36, cat:'plant',   sub:'terrarium',emoji:'🟢', name:'Peperomia Prostrata',  desc:'Turtle-shell patterned leaves on trailing stems. Compact and vivarium-perfect.',        price:'৳ 260' },
+  // ── PRODUCTS ──
+  { id:37, cat:'product', sub:null,       emoji:'🫙', name:'Terrarium Starter Kit', desc:'Glass tank, substrate, moss, and décor. Everything to launch your first terrarium.',   price:'৳ 1,800' },
+  { id:38, cat:'product', sub:null,       emoji:'🌱', name:'Isopod Bioactive Mix',  desc:'Coconut coir, sphagnum moss & leaf litter blend. Perfect isopod habitat substrate.',  price:'৳ 450 /2kg'  },
+  { id:39, cat:'product', sub:null,       emoji:'🌾', name:'Parrot Pellet Mix',     desc:'Balanced nutrition for parrots and conures. No artificial colours or preservatives.',  price:'৳ 380 /500g' },
+  { id:40, cat:'product', sub:null,       emoji:'👜', name:'Sugar Glider Pouch',   desc:'Ultra-soft bonding pouch for gliders to sleep and travel in comfort.',                 price:'৳ 550'       },
+  { id:41, cat:'product', sub:null,       emoji:'🔥', name:'Reptile Heat Mat',      desc:'Under-tank heating pad — ideal for isopods, roaches, and reptile enclosures.',         price:'৳ 750'       },
+  { id:42, cat:'product', sub:null,       emoji:'🪨', name:'Cactus Gritty Mix',     desc:'Fast-draining soil blend formulated specifically for cacti and succulents.',            price:'৳ 250 /1kg'  },
+  { id:43, cat:'product', sub:null,       emoji:'💡', name:'Plant Grow Light',      desc:'Full-spectrum LED grow light. Perfect for terrariums and low-light indoor plants.',     price:'৳ 1,200'     },
+  { id:44, cat:'product', sub:null,       emoji:'🧪', name:'Reptile Calcium Dust',  desc:'Calcium + D3 supplement for healthy bones in reptiles and other calcium-hungry pets.',  price:'৳ 320'       },
+];
+
+// ── CARD RENDERER ─────────────────────────────────────────────
+function card(p) {
+  const m = CAT_META[p.cat];
+  return `
+    <div class="pcard">
+      <div class="pcard-thumb" style="background:${m.bg}">${p.emoji}</div>
+      <div class="pcard-body">
+        <span class="pcard-tag" style="background:${m.tagBg};color:${m.tagColor}">${m.label}</span>
+        <div class="pcard-name">${p.name}</div>
+        <div class="pcard-desc">${p.desc}</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">${p.price}</div>
+          <button class="pcard-btn" onclick="order('${p.name.replace(/'/g,"\\'")}')">Order</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function render(id, list) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = list.length ? list.map(card).join('') :
+    '<p style="color:var(--gray);grid-column:1/-1;padding:20px 0">No items in this category yet. Check back soon!</p>';
+}
+
+// ── INITIAL RENDERS ───────────────────────────────────────────
+render('main-grid', products);
+render('pets-grid', products.filter(p => ['bird','rodent','isopod','roach','glider','hen'].includes(p.cat)));
+render('pgrid-cactus',    products.filter(p => p.sub === 'cactus'));
+render('pgrid-succulent', products.filter(p => p.sub === 'succulent'));
+render('pgrid-indoor',    products.filter(p => p.sub === 'indoor'));
+render('pgrid-terrarium', products.filter(p => p.sub === 'terrarium'));
+
+// ── SHOP FILTER ───────────────────────────────────────────────
+document.querySelectorAll('.ftab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
+    tab.classList.add('on');
+    const f = tab.dataset.f;
+    render('main-grid', f === 'all' ? products : products.filter(p => p.cat === f));
+  });
+});
+
+// ── PLANT SUBCAT TOGGLE ───────────────────────────────────────
+let activeSub = null;
+function togglePlantSub(el, sub) {
+  const wrap = document.getElementById('pgw-' + sub);
+  if (activeSub === sub) {
+    // close
+    wrap.classList.remove('show');
+    el.classList.remove('on');
+    activeSub = null;
+  } else {
+    // close any open
+    if (activeSub) {
+      document.getElementById('pgw-' + activeSub).classList.remove('show');
+      document.querySelector(`.psc[data-sub="${activeSub}"]`).classList.remove('on');
+    }
+    wrap.classList.add('show');
+    el.classList.add('on');
+    activeSub = sub;
+    setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'nearest' }), 80);
+  }
+}
+
+// ── ORDER / WHATSAPP ──────────────────────────────────────────
+const WA = '880XXXXXXXXXX'; // ← REPLACE with your actual WhatsApp number
+function order(name) {
+  const msg = encodeURIComponent(`Hi Beak N Claw! 👋\nI'm interested in ordering: *${name}*\nPlease let me know availability & details.`);
+  window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
+}
+
+// ── CONTACT FORM ──────────────────────────────────────────────
+function sendEnquiry() {
+  const name     = document.getElementById('f-name').value.trim();
+  const phone    = document.getElementById('f-phone').value.trim();
+  const interest = document.getElementById('f-interest').value;
+  const msg      = document.getElementById('f-msg').value.trim();
+  if (!name || !phone) { showToast('⚠️ Please enter your name and phone number.'); return; }
+  const text = encodeURIComponent(
+    `Hi Beak N Claw! 👋\n\nName: *${name}*\nPhone: ${phone}\nInterested in: *${interest || 'General enquiry'}*\n\nMessage: ${msg || 'Please get in touch!'}`
+  );
+  window.open(`https://wa.me/${WA}?text=${text}`, '_blank');
+}
+
+// ── MOBILE MENU ───────────────────────────────────────────────
+function toggleMenu() {
+  const m = document.getElementById('mob-menu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+function closeMenu() {
+  document.getElementById('mob-menu').style.display = 'none';
+}
+document.addEventListener('click', e => {
+  const m = document.getElementById('mob-menu');
+  if (m.style.display === 'flex' && !m.contains(e.target) && !e.target.classList.contains('ham')) closeMenu();
+});
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>
